@@ -33,11 +33,13 @@ export function Register() {
     <div className="flex min-h-screen bg-brand-light">
       
       {/* Lado Esquerdo: Imagem (Mesma do Login) */}
-      <div 
-        className="hidden md:flex w-1/2 bg-cover bg-center relative" 
-        style={{ backgroundImage: "url('/bg-login.jpg')" }}
+      <div
+        className="hidden md:flex w-1/2 bg-brand-blue"
+        style={{
+          backgroundImage: "url('/bg-login.jpg.jpg')",
+          backgroundSize: "cover",
+        }}
       >
-        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
       </div>
 
       {/* Lado Direito: Formulário de Cadastro */}
