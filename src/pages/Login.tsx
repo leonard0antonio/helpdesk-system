@@ -19,7 +19,7 @@ export function Login() {
 
     try {
       await signIn({ email, password });
-      navigate("/"); // Redireciona para o Dashboard em caso de sucesso
+      navigate("/chamados"); // Redireciona para o Dashboard em caso de sucesso
     } catch (err: any) {
       // Captura o erro da API (ex: senha incorreta) e exibe na tela
       setError(

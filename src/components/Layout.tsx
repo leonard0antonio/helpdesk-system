@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, Ticket, Users, LogOut, Wrench } from 'lucide-react';
-import { AuthContext } from '../contexts/AuthContext';
+import { useContext, useState } from "react";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Menu, X, Ticket, Users, LogOut, Wrench } from "lucide-react";
+import { AuthContext } from "../contexts/AuthContext";
 
 export function Layout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -11,19 +11,35 @@ export function Layout() {
   // Lógica para sair do sistema
   const handleLogout = () => {
     signOut();
-    navigate('/login');
+    navigate("/login");
   };
 
   // Define as rotas permitidas baseadas no papel (Role) do usuário
   const getNavItems = () => {
     const items = [
-      { to: '/', icon: <Ticket size={20} />, label: user?.role === 'CLIENT' ? 'Meus chamados' : 'Chamados' },
+      {
+        to: "/",
+        icon: <Ticket size={20} />,
+        label: user?.role === "CLIENT" ? "Meus chamados" : "Chamados",
+      },
     ];
 
-    if (user?.role === 'ADMIN') {
-      items.push({ to: '/tecnicos', icon: <Users size={20} />, label: 'Técnicos' });
-      items.push({ to: '/clientes', icon: <Users size={20} />, label: 'Clientes' });
-      items.push({ to: '/servicos', icon: <Wrench size={20} />, label: 'Serviços' });
+    if (user?.role === "ADMIN") {
+      items.push({
+        to: "/tecnicos",
+        icon: <Users size={20} />,
+        label: "Técnicos",
+      });
+      items.push({
+        to: "/clientes",
+        icon: <Users size={20} />,
+        label: "Clientes",
+      });
+      items.push({
+        to: "/servicos",
+        icon: <Wrench size={20} />,
+        label: "Serviços",
+      });
     }
 
     return items;
@@ -31,7 +47,6 @@ export function Layout() {
 
   return (
     <div className="flex h-screen bg-brand-light overflow-hidden">
-      
       {/* === SIDEBAR (DESKTOP) === */}
       {/* Oculta no mobile (hidden), fixa no desktop (md:flex) */}
       <aside className="hidden md:flex flex-col w-64 bg-brand-dark text-white shadow-xl">
@@ -54,7 +69,9 @@ export function Layout() {
               to={item.to}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-md transition-colors text-sm ${
-                  isActive ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                  isActive
+                    ? "bg-brand-blue text-white"
+                    : "text-gray-400 hover:bg-gray-800 hover:text-white"
                 }`
               }
             >
@@ -66,16 +83,37 @@ export function Layout() {
 
         {/* Perfil do Usuário Logado e Logout (Rodapé da Sidebar) */}
         <div className="p-4 border-t border-gray-700 flex items-center justify-between">
-          <div className="flex items-center gap-3 overflow-hidden">
-            <div className="w-10 h-10 rounded-full bg-brand-blue flex items-center justify-center text-sm font-bold flex-shrink-0">
-              {user?.name.substring(0, 2).toUpperCase()}
+          <NavLink
+            to="/perfil"
+            className="flex items-center gap-3 overflow-hidden hover:bg-gray-800 p-2 -ml-2 rounded-md transition-colors cursor-pointer w-full"
+          >
+            {/* Imagem de Perfil Dinâmica */}
+            <div className="w-10 h-10 rounded-full bg-brand-blue flex items-center justify-center text-sm font-bold flex-shrink-0 overflow-hidden border border-gray-600">
+              {user?.profileImage ? (
+                <img
+                  src={user.profileImage}
+                  alt="Perfil"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                user?.name.substring(0, 2).toUpperCase()
+              )}
             </div>
+
             <div className="flex flex-col overflow-hidden">
-              <span className="text-sm font-medium truncate">{user?.name}</span>
-              <span className="text-xs text-gray-400 truncate">{user?.email}</span>
+              <span className="text-sm font-medium truncate text-white">
+                {user?.name}
+              </span>
+              <span className="text-xs text-gray-400 truncate">
+                {user?.email}
+              </span>
             </div>
-          </div>
-          <button onClick={handleLogout} className="text-gray-400 hover:text-red-400 transition-colors p-2">
+          </NavLink>
+
+          <button
+            onClick={handleLogout}
+            className="text-gray-400 hover:text-red-400 transition-colors p-2 flex-shrink-0 ml-2"
+          >
             <LogOut size={20} />
           </button>
         </div>
@@ -83,7 +121,6 @@ export function Layout() {
 
       {/* === ÁREA PRINCIPAL (MOBILE E DESKTOP) === */}
       <main className="flex-1 flex flex-col h-full overflow-hidden">
-        
         {/* HEADER MOBILE (Oculto no Desktop) */}
         <header className="md:hidden bg-brand-dark text-white flex items-center justify-between p-4 shadow-md">
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -108,7 +145,9 @@ export function Layout() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 rounded-md transition-colors text-sm ${
-                    isActive ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-gray-700'
+                    isActive
+                      ? "bg-brand-blue text-white"
+                      : "text-gray-400 hover:bg-gray-700"
                   }`
                 }
               >
@@ -116,7 +155,7 @@ export function Layout() {
                 {item.label}
               </NavLink>
             ))}
-            <button 
+            <button
               onClick={handleLogout}
               className="flex w-full items-center gap-3 px-4 py-3 rounded-md text-red-400 hover:bg-gray-700 text-sm mt-4 border-t border-gray-700"
             >
@@ -130,7 +169,6 @@ export function Layout() {
         <div className="flex-1 overflow-auto p-4 md:p-8">
           <Outlet /> {/* O React Router injeta as páginas filhas aqui */}
         </div>
-
       </main>
     </div>
   );

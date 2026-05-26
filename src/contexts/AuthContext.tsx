@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, type ReactNode } from 'react';
 import { api } from '../services/api';
 import { jwtDecode } from 'jwt-decode';
 
@@ -23,6 +23,7 @@ interface AuthContextData {
   isAuthenticated: boolean;
   signIn: (credentials: LoginCredentials) => Promise<void>;
   signOut: () => void;
+  updateUser: (updatedUser: User) => void;
 }
 
 // Criação do Contexto
@@ -66,8 +67,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }
 
+  function updateUser(updatedUser: User) {
+    setUser(updatedUser);
+    localStorage.setItem('@HelpDesk:user', JSON.stringify(updatedUser));
+  }
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, signIn, signOut, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
