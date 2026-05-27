@@ -8,13 +8,19 @@ export default {
     extend: {
       colors: {
         brand: {
-          blue: '#1e3a8a', // Azul escuro do background e logo
-          light: '#f8fafc', // Fundo cinza bem claro das telas
-          dark: '#1f2937', // Sidebar escura
+          light: '#f8fafc',
+          blue: '#2563eb',
+          dark: '#0f172a',
         }
       },
-      backgroundImage: {
-        'login-pattern': "url('/waves-bg.svg')", // Assumindo que você colocará a imagem de ondas na pasta public
+      keyframes: {
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fadeInUp 0.4s ease-out forwards',
       }
     },
   },

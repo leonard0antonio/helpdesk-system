@@ -15,8 +15,20 @@ import { Privacy } from "./pages/Privacy";
 
 // Proteção de Rota
 function PrivateRoute({ children }: { children: JSX.Element }) {
-  const { isAuthenticated } = useContext(AuthContext);
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  const { isAuthenticated, loading } = useContext(AuthContext);
+
+  // Se o contexto ainda estiver a ler o localStorage, mostra um ecrã de loading
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-4 border-brand-blue border-t-transparent animate-spin mb-4"></div>
+        <span className="text-sm font-medium text-gray-500">A verificar sessão...</span>
+      </div>
+    );
+  }
+
+  // Só redireciona se o carregamento terminou E o utilizador realmente não estiver autenticado
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
 }
 
 export function App() {

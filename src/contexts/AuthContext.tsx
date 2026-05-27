@@ -21,6 +21,7 @@ interface LoginCredentials {
 interface AuthContextData {
   user: User | null;
   isAuthenticated: boolean;
+  loading: boolean; // 👇 1. Adicionado à tipagem
   signIn: (credentials: LoginCredentials) => Promise<void>;
   signOut: () => void;
   updateUser: (updatedUser: User) => void;
@@ -31,6 +32,9 @@ export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  
+  // 👇 2. Estado de loading inicia como TRUE (bloqueando redirecionamentos apressados)
+  const [loading, setLoading] = useState(true); 
 
   // useEffect roda ao carregar a aplicação para ver se já existe alguém logado no Local Storage
   useEffect(() => {
@@ -41,6 +45,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Opcional: Aqui você pode usar o jwtDecode(storedToken) para checar se o token já expirou
       setUser(JSON.parse(storedUser));
     }
+
+    // 👇 3. Avisamos que a verificação do Local Storage terminou!
+    setLoading(false);
   }, []);
 
   async function signIn({ email, password }: LoginCredentials) {
@@ -73,7 +80,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, signIn, signOut, updateUser }}>
+    // 👇 4. Exportamos o loading no Provider para o App.tsx conseguir ler
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, loading, signIn, signOut, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
