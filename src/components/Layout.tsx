@@ -18,7 +18,7 @@ export function Layout() {
   const getNavItems = () => {
     const items = [
       {
-        to: "/",
+        to: "/chamados", // <--- ALTERE ESTA LINHA AQUI
         icon: <Ticket size={20} />,
         label: user?.role === "CLIENT" ? "Meus chamados" : "Chamados",
       },

@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 export function Footer() {
   
   // Função para simular páginas em construção sem quebrar a navegação
-  const handleComingSoon = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    alert('🚀 Esta página institucional estará disponível em breve!');
-  };
 
   return (
     <footer className="bg-brand-dark pt-16 pb-8 px-6 border-t border-gray-800 text-gray-400">
@@ -24,11 +20,8 @@ export function Footer() {
         <div>
           <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Produto</h4>
           <ul className="space-y-3 text-sm">
-            {/* Links âncora que rolam a página */}
             <li><a href="#funcionalidades" className="hover:text-brand-blue transition-colors">Funcionalidades</a></li>
             <li><a href="#casos-de-uso" className="hover:text-brand-blue transition-colors">Casos de Uso</a></li>
-            {/* Link simulado */}
-            <li><a href="/" onClick={handleComingSoon} className="hover:text-brand-blue transition-colors">Preços</a></li>
           </ul>
         </div>
 
@@ -44,8 +37,8 @@ export function Footer() {
       <div className="max-w-6xl mx-auto pt-8 border-t border-gray-800 text-sm flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500">
         <p>© {new Date().getFullYear()} HelpDesk System. Todos os direitos reservados.</p>
         <div className="flex gap-4">
-          <a href="/" onClick={handleComingSoon} className="hover:text-white transition-colors">Termos</a>
-          <a href="/" onClick={handleComingSoon} className="hover:text-white transition-colors">Privacidade</a>
+          <Link to="/termos" className="hover:text-white transition-colors">Termos</Link>
+          <Link to="/privacidade" className="hover:text-white transition-colors">Privacidade</Link>
         </div>
       </div>
     </footer>
