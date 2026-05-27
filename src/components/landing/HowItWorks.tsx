@@ -18,7 +18,7 @@ export function HowItWorks() {
   ];
 
   return (
-    <section className="py-24 bg-gray-900 text-white px-6">
+    <section id="casos-de-uso" className="py-24 bg-gray-900 text-white px-6 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Como o HelpDesk funciona</h2>

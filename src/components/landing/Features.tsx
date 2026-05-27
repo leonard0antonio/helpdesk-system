@@ -23,7 +23,7 @@ export function Features() {
   ];
 
   return (
-    <section className="py-20 bg-white px-6">
+    <section id="funcionalidades" className="py-20 bg-white px-6 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Feito para simplificar o seu dia a dia</h2>
