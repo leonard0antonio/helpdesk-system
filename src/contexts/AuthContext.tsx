@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect, type ReactNode } from 'react';
 import { api } from '../services/api';
-import { jwtDecode } from 'jwt-decode';
 
 // Tipagem dos dados do usuário
 interface User {
