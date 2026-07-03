@@ -31,20 +31,12 @@ export function Login() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50 font-sans relative">
+    <div className="flex min-h-screen bg-gray-50 font-sans animate-fade-in">
       
-      {/* Botão de Voltar Dinâmico */}
-      <button 
-        onClick={() => navigate(-1)}
-        className="absolute top-6 left-6 z-40 flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-brand-blue transition-colors bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-200"
-      >
-        <ArrowLeft size={16} /> Voltar
-      </button>
-
       {/* Lado Esquerdo: Área de Destaque Visual */}
       <div className="hidden lg:flex flex-col justify-between w-1/2 bg-brand-dark relative overflow-hidden p-12">
         <div 
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-40 animate-fade-in"
           style={{
             backgroundImage: "url('/bg-login.jpg')", 
             backgroundSize: "cover",
@@ -53,26 +45,35 @@ export function Login() {
         ></div>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent"></div>
 
-        <div className="relative z-10 flex items-center gap-2">
+        <div className="relative z-10 flex items-center gap-2 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           <div className="w-8 h-8 rounded-full border-4 border-brand-blue border-t-transparent animate-spin-slow"></div>
           <span className="text-2xl font-bold text-white">HelpDesk</span>
         </div>
 
         <div className="relative z-10 max-w-md">
-          <h2 className="text-4xl font-black text-white mb-6 leading-tight">
+          <h2 className="text-4xl font-black text-white mb-6 leading-tight animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             Bem-vindo de volta.
           </h2>
           <ul className="space-y-4 text-gray-300">
-            <li className="flex items-center gap-3"><CheckCircle2 size={20} className="text-brand-blue" /> Gestão inteligente de chamados</li>
-            <li className="flex items-center gap-3"><CheckCircle2 size={20} className="text-brand-blue" /> Acompanhamento de status em tempo real</li>
-            <li className="flex items-center gap-3"><CheckCircle2 size={20} className="text-brand-blue" /> Conexão direta com sua equipe técnica</li>
+            <li className="flex items-center gap-3 animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}><CheckCircle2 size={20} className="text-brand-blue" /> Gestão inteligente de chamados</li>
+            <li className="flex items-center gap-3 animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}><CheckCircle2 size={20} className="text-brand-blue" /> Acompanhamento de status em tempo real</li>
+            <li className="flex items-center gap-3 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}><CheckCircle2 size={20} className="text-brand-blue" /> Conexão direta com sua equipe técnica</li>
           </ul>
         </div>
       </div>
 
       {/* Lado Direito: Formulário de Login */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 md:p-12 relative">
-        <div className="w-full max-w-md">
+      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 md:p-12 relative animate-fade-in-up">
+        
+        {/* Botão de Voltar movido para a área direita */}
+        <Link 
+          to="/"
+          className="absolute top-6 left-6 md:top-8 md:left-8 z-40 flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-brand-blue transition-colors bg-white hover:bg-gray-50 px-4 py-2 rounded-full shadow-sm border border-gray-200 animate-fade-in-up"
+        >
+          <ArrowLeft size={16} /> Voltar ao Início
+        </Link>
+
+        <div className="w-full max-w-md mt-12 md:mt-0">
           
           <div className="text-center mb-10">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Acesse sua conta</h1>

@@ -41,20 +41,12 @@ export function Register() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50 font-sans relative">
+    <div className="flex min-h-screen bg-gray-50 font-sans animate-fade-in">
       
-      {/* Botão de Voltar Dinâmico */}
-      <button 
-        onClick={() => navigate(-1)}
-        className="absolute top-6 left-6 z-40 flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-brand-blue transition-colors bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-200"
-      >
-        <ArrowLeft size={16} /> Voltar
-      </button>
-
       {/* Lado Esquerdo: Área de Destaque Visual */}
       <div className="hidden lg:flex flex-col justify-between w-1/2 bg-brand-dark relative overflow-hidden p-12">
         <div 
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-40 animate-fade-in"
           style={{
             backgroundImage: "url('/bg-login.jpg')", 
             backgroundSize: "cover",
@@ -63,26 +55,35 @@ export function Register() {
         ></div>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent"></div>
 
-        <div className="relative z-10 flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full border-4 border-brand-blue border-t-transparent"></div>
+        <div className="relative z-10 flex items-center gap-2 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <div className="w-8 h-8 rounded-full border-4 border-brand-blue border-t-transparent animate-spin-slow"></div>
           <span className="text-2xl font-bold text-white">HelpDesk</span>
         </div>
 
         <div className="relative z-10 max-w-md">
-          <h2 className="text-4xl font-black text-white mb-6 leading-tight">
+          <h2 className="text-4xl font-black text-white mb-6 leading-tight animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             Comece a transformar o seu atendimento.
           </h2>
           <ul className="space-y-4 text-gray-300">
-            <li className="flex items-center gap-3"><CheckCircle2 size={20} className="text-brand-blue" /> Orçamentos em tempo real</li>
-            <li className="flex items-center gap-3"><CheckCircle2 size={20} className="text-brand-blue" /> Acompanhamento de status</li>
-            <li className="flex items-center gap-3"><CheckCircle2 size={20} className="text-brand-blue" /> Histórico completo de serviços</li>
+            <li className="flex items-center gap-3 animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}><CheckCircle2 size={20} className="text-brand-blue" /> Orçamentos em tempo real</li>
+            <li className="flex items-center gap-3 animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}><CheckCircle2 size={20} className="text-brand-blue" /> Acompanhamento de status</li>
+            <li className="flex items-center gap-3 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}><CheckCircle2 size={20} className="text-brand-blue" /> Histórico completo de serviços</li>
           </ul>
         </div>
       </div>
 
       {/* Lado Direito: Formulário de Cadastro */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 md:p-12 relative">
-        <div className="w-full max-w-md">
+      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 md:p-12 relative animate-fade-in-up">
+        
+        {/* Botão de Voltar movido para a área direita */}
+        <Link 
+          to="/"
+          className="absolute top-6 left-6 md:top-8 md:left-8 z-40 flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-brand-blue transition-colors bg-white hover:bg-gray-50 px-4 py-2 rounded-full shadow-sm border border-gray-200 animate-fade-in-up"
+        >
+          <ArrowLeft size={16} /> Voltar ao Início
+        </Link>
+
+        <div className="w-full max-w-md mt-12 md:mt-0">
           
           <div className="text-center mb-10">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Criar nova conta</h1>
@@ -205,13 +206,13 @@ export function Register() {
           </form>
 
           {/* Link para Login */}
-          <div className="mt-8 text-center">
-            <p className="text-sm text-gray-600">
-              Já possui uma conta?{' '}
-              <Link to="/login" className="text-brand-blue font-bold hover:underline transition-all">
-                Fazer login
-              </Link>
+          <div className="mt-8 text-center bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
+            <p className="text-sm text-gray-600 mb-3">
+              Já possui uma conta?
             </p>
+            <Link to="/login" className="block w-full bg-gray-50 text-gray-800 border border-gray-200 font-bold py-2.5 rounded-lg hover:bg-gray-100 transition-all">
+              Fazer login
+            </Link>
           </div>
           
         </div>
@@ -222,7 +223,7 @@ export function Register() {
       {/* ========================================== */}
       {showTermsModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col overflow-hidden animate-fade-in-up">
             <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-gray-50">
               <h2 className="text-xl font-bold text-gray-900">Termos de Serviço</h2>
               <button onClick={() => setShowTermsModal(false)} className="text-gray-400 hover:text-gray-700 bg-white p-2 rounded-full shadow-sm">
@@ -252,7 +253,7 @@ export function Register() {
       {/* ========================================== */}
       {showPrivacyModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col overflow-hidden animate-fade-in-up">
             <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-gray-50">
               <h2 className="text-xl font-bold text-gray-900">Política de Privacidade</h2>
               <button onClick={() => setShowPrivacyModal(false)} className="text-gray-400 hover:text-gray-700 bg-white p-2 rounded-full shadow-sm">
