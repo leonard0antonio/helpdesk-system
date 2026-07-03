@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import {
-  Edit,
   Eye,
   Play,
   CheckSquare,
@@ -13,7 +12,6 @@ import {
   Loader2,
   User,
   Wrench,
-  AlertTriangle,
   FileText,
 } from "lucide-react";
 import { api } from "../services/api";
