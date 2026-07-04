@@ -2,6 +2,7 @@
 
 ![Demo da aplicação](demo.png)
 
+Publicação No Likedin: https://www.linkedin.com/posts/leonardo-a-a063b519b_fullstackdevelopment-reactjs-nodejs-ugcPost-7478974684831866880-Cc5E/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC7d9mYBte6k1Fyl6nFfCp63epIEG7BIEWo
 
 Sistema web Full Stack focado em gestão de chamados técnicos com controle de acesso (RBAC). A solução permite que administradores gerenciem o ecossistema, técnicos realizem atendimentos com precificação dinâmica e clientes acompanhem suas solicitações em tempo real.
 
