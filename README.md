@@ -66,4 +66,4 @@ npm run dev
 
 ## 👨‍💻 Autor
 
-**Leonardo Antonio da Silva** *Full Stack Developer | Resident in Technology @ Porto Digital*
+**Leonardo Antonio da Silva** *Full Stack Developer 
